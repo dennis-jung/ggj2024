@@ -2,36 +2,30 @@
 
 [ext_resource type="Script" path="res://scenes/main_scene/main_scene.gd" id="1_husv0"]
 [ext_resource type="Script" path="res://overlay.gd" id="2_26y60"]
-[ext_resource type="Script" path="res://splash_screens.gd" id="3_f6xp8"]
+[ext_resource type="PackedScene" uid="uid://dgif6lu2hldo4" path="res://scenes/splash_screens/splash_screens.tscn" id="2_svxkw"]
 [ext_resource type="Texture2D" uid="uid://7owgtkgd3jsk" path="res://assets/GGJ_2024_logo.png" id="4_s36n2"]
 [ext_resource type="Texture2D" uid="uid://u7uex6muuaft" path="res://assets/GGJ_2024_theme.jpg" id="5_uknar"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_husv0")
 
-[node name="SplashScreens" type="CanvasLayer" parent="." node_paths=PackedStringArray("images")]
-script = ExtResource("3_f6xp8")
-images = [NodePath("GGL2024_logo"), NodePath("GGL2024_theme")]
+[node name="SplashScreens" parent="." node_paths=PackedStringArray("images") instance=ExtResource("2_svxkw")]
+images = [NodePath("GGL2024_logo2"), NodePath("GGL2024_theme2")]
 
-[node name="GGL2024_logo" type="TextureRect" parent="SplashScreens"]
+[node name="GGL2024_logo2" type="TextureRect" parent="SplashScreens"]
 visible = false
 offset_right = 1920.0
 offset_bottom = 1084.0
 texture = ExtResource("4_s36n2")
 expand_mode = 5
 
-[node name="GGL2024_theme" type="TextureRect" parent="SplashScreens"]
+[node name="GGL2024_theme2" type="TextureRect" parent="SplashScreens"]
 visible = false
 offset_top = -57.0
 offset_right = 1937.0
 offset_bottom = 1231.0
 texture = ExtResource("5_uknar")
 expand_mode = 5
-
-[node name="Fader" type="ColorRect" parent="SplashScreens"]
-offset_right = 1920.0
-offset_bottom = 1080.0
-color = Color(0, 0, 0, 1)
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 visible = false

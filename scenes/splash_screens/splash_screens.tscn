@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgif6lu2hldo4"]
+
+[ext_resource type="Script" path="res://scenes/splash_screens/splash_screens.gd" id="1_dxmda"]
+
+[node name="SplashScreens" type="CanvasLayer" node_paths=PackedStringArray("images")]
+script = ExtResource("1_dxmda")
+images = [null, null]
+
+[node name="Fader" type="ColorRect" parent="."]
+z_index = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
