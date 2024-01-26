@@ -5,6 +5,7 @@ class_name SplashScreens
 @export  var fade_time: float = 1.0
 @export  var in_between_time: float = 1.0
 @export var images: Array[TextureRect]
+@onready var fader: ColorRect = $Fader
 var index: int = -1
 var current_image: TextureRect
 var current_tween: Tween
@@ -19,14 +20,14 @@ func next():
 	if index >= images.size():
 		print_debug("exiting splash screens")
 		return
+	fader.color.a = 1.0
 	current_image = images[index]
-	current_image.modulate.a8 = 0
 	current_image.show()
 	current_tween = get_tree().create_tween()
 	current_tween.connect("finished", on_tween_finished)
-	current_tween.tween_property(self, "modulate:a8", 255, fade_time)
+	current_tween.tween_property(fader, "color:a", 0.0, fade_time)
 	current_tween.tween_interval(display_time)
-	current_tween.tween_property(self, "modulate:a8", 0, fade_time)
+	current_tween.tween_property(fader, "color:a", 1.0, fade_time)
 	current_tween.tween_interval(in_between_time)
 	
 
