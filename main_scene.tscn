@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0khnkkcb5q1k"]
+
+[ext_resource type="Script" path="res://main_scene.gd" id="1_husv0"]
+[ext_resource type="Script" path="res://overlay.gd" id="2_26y60"]
+[ext_resource type="Script" path="res://splash_screens.gd" id="3_f6xp8"]
+[ext_resource type="Texture2D" uid="uid://7owgtkgd3jsk" path="res://assets/GGJ_2024_logo.png" id="4_s36n2"]
+[ext_resource type="Texture2D" uid="uid://u7uex6muuaft" path="res://assets/GGJ_2024_theme.jpg" id="5_uknar"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_husv0")
+
+[node name="SplashScreens" type="CanvasLayer" parent="." node_paths=PackedStringArray("images")]
+script = ExtResource("3_f6xp8")
+images = [NodePath("GGL2024_logo"), NodePath("GGL2024_theme")]
+
+[node name="GGL2024_logo" type="TextureRect" parent="SplashScreens"]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1084.0
+texture = ExtResource("4_s36n2")
+expand_mode = 5
+
+[node name="GGL2024_theme" type="TextureRect" parent="SplashScreens"]
+visible = false
+offset_top = -57.0
+offset_right = 1937.0
+offset_bottom = 1231.0
+texture = ExtResource("5_uknar")
+expand_mode = 5
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("2_26y60")
+
+[node name="ColorRect" type="ColorRect" parent="Overlay"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+visible = false
