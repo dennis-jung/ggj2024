@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c0khnkkcb5q1k"]
 
-[ext_resource type="Script" path="res://main_scene.gd" id="1_husv0"]
+[ext_resource type="Script" path="res://scenes/main_scene/main_scene.gd" id="1_husv0"]
 [ext_resource type="Script" path="res://overlay.gd" id="2_26y60"]
 [ext_resource type="Script" path="res://splash_screens.gd" id="3_f6xp8"]
 [ext_resource type="Texture2D" uid="uid://7owgtkgd3jsk" path="res://assets/GGJ_2024_logo.png" id="4_s36n2"]
