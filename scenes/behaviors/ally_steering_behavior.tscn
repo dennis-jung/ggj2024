@@ -8,7 +8,6 @@
 script = ExtResource("1_yi3dq")
 
 [node name="DebugDisplay" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
