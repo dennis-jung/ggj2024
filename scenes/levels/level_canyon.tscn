@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://0ohsl3t4y2tv"]
+[gd_scene load_steps=8 format=3 uid="uid://0ohsl3t4y2tv"]
 
 [ext_resource type="Texture2D" uid="uid://cje83mlog8jqk" path="res://assets/Canyon-tiles.png" id="1_v64l6"]
 [ext_resource type="PackedScene" uid="uid://44aaw8y86v8m" path="res://scenes/player_character/player_character.tscn" id="2_t2f22"]
@@ -78,6 +78,12 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_13r6v")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_n3p2v"]
+vertices = PackedVector2Array(54, 86, -54, 86, -54, -183, 54, -184)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-65, -193, -64, 96, 64, 96, 65, -195)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
 [node name="LevelCanyon" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -93,5 +99,10 @@ layer_1/tile_data = PackedInt32Array(-65535, 196608, 1, -131071, 0, 0, -196607, 
 [node name="EnemyShadow" parent="." instance=ExtResource("3_b4op4")]
 position = Vector2(1, -87)
 
-[node name="AllyCharacter" parent="." instance=ExtResource("4_p3ijv")]
+[node name="AllyCharacter" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_p3ijv")]
 position = Vector2(10, 20)
+player = NodePath("../PlayerCharacter")
+speed = 100.0
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_n3p2v")

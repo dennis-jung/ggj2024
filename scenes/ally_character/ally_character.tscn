@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://c32whibdlvdn8"]
+[gd_scene load_steps=18 format=3 uid="uid://c32whibdlvdn8"]
 
 [ext_resource type="Texture2D" uid="uid://hxugi27cpjyt" path="res://assets/Jester_red.png" id="1_1ffsf"]
+[ext_resource type="Script" path="res://scenes/ally_character/ally_character.gd" id="1_6dwpf"]
 [ext_resource type="PackedScene" uid="uid://bqnxx0yem4uhs" path="res://scenes/behaviors/ally_steering_behavior.tscn" id="2_xn2f5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_avp3r"]
@@ -127,6 +128,7 @@ size = Vector2(9, 4)
 
 [node name="AllyCharacter" type="CharacterBody2D"]
 motion_mode = 1
+script = ExtResource("1_6dwpf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
@@ -140,3 +142,13 @@ shape = SubResource("RectangleShape2D_nc1de")
 
 [node name="AllySteeringBehavior" parent="." node_paths=PackedStringArray("character_body") instance=ExtResource("2_xn2f5")]
 character_body = NodePath("..")
+
+[node name="Navigation" type="Node2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
+
+[node name="Timer" type="Timer" parent="Navigation"]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Navigation/Timer" to="." method="_on_timer_timeout"]

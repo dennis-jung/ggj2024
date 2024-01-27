@@ -10,6 +10,7 @@ var direction_map: Array[Vector2] = []
 var collision_map: Array[float] = []
 var danger_map: Array[float] = []
 var interest_map: Array[float] = []
+var steering_map: Array[Vector2] = []
 
 func _ready():
 	direction_map.append(Vector2(0, -1).normalized())
@@ -68,7 +69,12 @@ func get_neighbor_dir_minus(index: int):
 	return neighbor_dir
 
 
+func combine_maps():
+	for i in direction_map.size():
+		danger_map[i] = collision_map[i]
+		
+
 func get_steering_map():
-	return direction_map
+	return steering_map
 
 
