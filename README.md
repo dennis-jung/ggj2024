@@ -21,5 +21,5 @@ There was a mixup, though. He accidently also frees another convictm, you. As yo
 
 
 ## Resources
-https://youtu.be/6BrZryMz-ac?si=yIOu1EBDD5wIEDxj
-https://youtu.be/-y3MOsBetow?si=KdiSdLQsbo3r0Ym5
+- https://youtu.be/6BrZryMz-ac?si=yIOu1EBDD5wIEDxj
+- https://youtu.be/-y3MOsBetow?si=KdiSdLQsbo3r0Ym5
