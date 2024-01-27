@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/enemies/shadow/enemy_shadow.gd" id="1_tyrpj"]
 [ext_resource type="Texture2D" uid="uid://c88man8ml5s43" path="res://scenes/enemies/shadow/Enemy_darkflame.png" id="1_us07e"]
 [ext_resource type="Script" path="res://scenes/enemies/shadow/debug_overlay.gd" id="2_a10dt"]
-[ext_resource type="PackedScene" path="res://scenes/behaviors/steering_behavior.tscn" id="4_4r75w"]
+[ext_resource type="PackedScene" uid="uid://bof33fe06vmy3" path="res://scenes/behaviors/steering_behavior.tscn" id="4_4r75w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1suyq"]
 radius = 80.399
