@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/main_scene/main_scene.gd" id="1_husv0"]
 [ext_resource type="PackedScene" uid="uid://dgif6lu2hldo4" path="res://scenes/splash_screens/splash_screens.tscn" id="2_svxkw"]
-[ext_resource type="Texture2D" uid="uid://7owgtkgd3jsk" path="res://assets/GGJ_2024_logo.png" id="4_s36n2"]
-[ext_resource type="Texture2D" uid="uid://u7uex6muuaft" path="res://assets/GGJ_2024_theme.jpg" id="5_uknar"]
+[ext_resource type="Texture2D" uid="uid://dxre2u7sbt25b" path="res://assets/ggj/GGJ_2024_logo.png" id="4_s36n2"]
+[ext_resource type="Texture2D" uid="uid://do34cr1sw3l56" path="res://assets/ggj/GGJ_2024_theme.jpg" id="5_uknar"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_husv0")
