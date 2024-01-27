@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://0ohsl3t4y2tv"]
+[gd_scene load_steps=6 format=3 uid="uid://0ohsl3t4y2tv"]
 
 [ext_resource type="Texture2D" uid="uid://cje83mlog8jqk" path="res://assets/Canyon-tiles.png" id="1_v64l6"]
 [ext_resource type="PackedScene" uid="uid://44aaw8y86v8m" path="res://scenes/player_character/player_character.tscn" id="2_t2f22"]
+[ext_resource type="PackedScene" uid="uid://bfapesjiupn4" path="res://scenes/enemies/shadow/enemy_shadow.tscn" id="3_b4op4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_13r6v"]
 texture = ExtResource("1_v64l6")
@@ -88,3 +89,6 @@ layer_1/tile_data = PackedInt32Array(-65535, 196608, 1, -131071, 0, 0, -196607, 
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_t2f22")]
 speed = 100
+
+[node name="EnemyShadow" parent="." instance=ExtResource("3_b4op4")]
+position = Vector2(1, -87)
