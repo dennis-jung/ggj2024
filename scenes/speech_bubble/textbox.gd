@@ -10,6 +10,7 @@ const MAX_WIDTH = 256 # Pixels
 var text := ""
 
 func display_text(text_to_display: String):
+	print("Displaying text")
 	text = text_to_display
 	label.text = text_to_display
 	
@@ -22,14 +23,15 @@ func display_text(text_to_display: String):
 		await resized # await y resize
 		custom_minimum_size.y = size.y
 		
-	global_position.x -= size.x / 2
-	global_position.y -= size.y +24
+	#global_position.x -= size.x / 2
+	global_position.y -= size.y + 20
 	
 	visible = true
 	
 	timer.start(talk_time)
 
-func shutup():
+func _on_shutup_timer_timeout():
+	print("Shutup.")
 	text = ""
 	label.text = ""
 	visible = false
