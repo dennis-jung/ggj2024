@@ -23,17 +23,17 @@ There was a mixup, though. He accidently also frees another convictm, you. As yo
 
 ### Player
 
-( ) player sprite sheet
+(x) player sprite sheet
 ( ) player logic
-( ) animations (walk, attack)
+(x) animations (walk, attack)
 
 ### Assets
 
-( ) Jesters
-( ) Enemy Shadow
+(x) Jesters
+(x) Enemy Shadow
 ( ) Animation
-( ) Weapons (Sword, Jester staff)
-( ) Castle
+(x) Weapons (Sword, Jester staff)
+(x) Castle
 
 ## Resources
 
