@@ -1,7 +1,7 @@
 # Global Game Jam 2024 
 
 
-![GGJ Logo](/assets/GGJ_2024_logo_small.png)
+![GGJ Logo](/assets/ggj/GGJ_2024_logo_small.png)
 
 
 Repo for a GGJ 2024 game developed from 2024-01-26 to 2024-01-28
@@ -9,7 +9,7 @@ Repo for a GGJ 2024 game developed from 2024-01-26 to 2024-01-28
 Theme is ...
 > Make me laugh
 
-![GGJ Theme](/assets/GGJ_2024_theme.jpg)
+![GGJ Theme](/assets/ggj/GGJ_2024_theme_small.jpg)
 
 ## Engine
 - Godot 4.12
