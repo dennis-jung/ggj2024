@@ -69,4 +69,6 @@ func get_neighbor_dir_minus(index: int):
 
 
 func get_steering_map():
-	pass	
+	return direction_map
+
+
