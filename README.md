@@ -1,7 +1,7 @@
 # Global Game Jam 2024 
 
 
-![GGJ Logo](/assets/GGJ_2024_logo.png)
+![GGJ Logo](/assets/GGJ_2024_logo_small.png)
 
 
 Repo for a GGJ 2024 game developed from 2024-01-26 to 2024-01-28
