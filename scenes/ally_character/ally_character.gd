@@ -14,6 +14,9 @@ const lines: Array[String] = [
 	"Third insult here!"
 ]
 
+func _ready():
+	speech_timer.start(speech_delay)
+
 func _physics_process(delta):
 	var direction = Vector2.ZERO
 	direction = nav_agent.get_next_path_position() - global_position
