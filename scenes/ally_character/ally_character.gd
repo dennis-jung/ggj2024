@@ -8,6 +8,9 @@ extends CharacterBody2D
 @onready var nav_agent: NavigationAgent2D = $Navigation/NavigationAgent2D
 @onready var speech_timer = $SpeechTimer
 
+@onready var speechbubble_scene = preload("res://scenes/speech_bubble/textbox.tscn")
+
+
 const lines: Array[String] = [
 	"Let's get them, like the king got the crabs!",
 	"This guy looks like his parents were 1st cousins, just like with the king's line.",
@@ -30,7 +33,10 @@ func _on_timer_timeout():
 
 func _on_speech_timer_timeout():
 		# give speech
-	DialogManager.start_dialog(global_position, lines)
+	var textbox = speechbubble_scene.instantiate()
+	self.add_child(textbox)
+	textbox.global_position = global_position
+	textbox.display_text(lines[0])
 	# reset timer
 	speech_timer.start(speech_delay)
 
