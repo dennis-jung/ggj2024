@@ -11,8 +11,11 @@ signal has_been_hit
 @onready var speech_timer = $SpeechTimer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var staff: AnimatedSprite2D = $Staff
 
 @onready var speechbubble_scene = preload("res://scenes/speech_bubble/textbox.tscn")
+
+var staff_mount_points = {}
 
 var is_pushed_back: bool = false
 
@@ -24,6 +27,10 @@ const lines: Array[String] = [
 ]
 
 func _ready():
+	staff_mount_points["up"] = $StaffMountPointUp
+	staff_mount_points["down"] = $StaffMountPointDown
+	staff_mount_points["left"] = $StaffMountPointLeft
+	staff_mount_points["right"] = $StaffMountPointRight
 	speech_timer.start(speech_delay)
 	nav_agent.max_speed = speed
 
@@ -79,6 +86,11 @@ func select_animation():
 		elif velocity.y > 0:
 			dir = "down"
 		sprite.play("walk_" + dir)
+		set_weapon_mount_point(dir)
+
+func set_weapon_mount_point(dir: String):
+		staff.position = staff_mount_points[dir].position
+		staff.z_index = staff_mount_points[dir].z_index
 
 
 func hit(damage, hit_vector):

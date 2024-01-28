@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://c32whibdlvdn8"]
+[gd_scene load_steps=24 format=3 uid="uid://c32whibdlvdn8"]
 
 [ext_resource type="Texture2D" uid="uid://hxugi27cpjyt" path="res://assets/Jester_red.png" id="1_1ffsf"]
 [ext_resource type="Script" path="res://scenes/ally_characters/ally_character_red.gd" id="1_6dwpf"]
 [ext_resource type="PackedScene" uid="uid://bqnxx0yem4uhs" path="res://scenes/behaviors/ally_steering_behavior.tscn" id="2_xn2f5"]
 [ext_resource type="AudioStream" uid="uid://dthfl7nuicxpq" path="res://scenes/ally_characters/allies_ouch.wav" id="4_yv1md"]
+[ext_resource type="Texture2D" uid="uid://bawrp8dcwl7a0" path="res://assets/Jester_staff.png" id="5_q67hw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_avp3r"]
 atlas = ExtResource("1_1ffsf")
@@ -127,6 +128,35 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nc1de"]
 size = Vector2(9, 4)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u5px"]
+atlas = ExtResource("5_q67hw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enf15"]
+atlas = ExtResource("5_q67hw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjbaj"]
+atlas = ExtResource("5_q67hw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2gggi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u5px")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enf15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjbaj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="AllyCharacterRed" type="CharacterBody2D"]
 collision_layer = 32
 collision_mask = 7
@@ -140,6 +170,20 @@ sprite_frames = SubResource("SpriteFrames_nqeme")
 animation = &"walk_down"
 frame_progress = 0.521893
 speed_scale = 2.0
+
+[node name="StaffMountPointUp" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(5, -12)
+
+[node name="StaffMountPointLeft" type="Node2D" parent="."]
+z_index = -1
+position = Vector2(0, -12)
+
+[node name="StaffMountPointDown" type="Node2D" parent="."]
+position = Vector2(-5, -8)
+
+[node name="StaffMountPointRight" type="Node2D" parent="."]
+position = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -2)
@@ -165,6 +209,10 @@ autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_yv1md")
+
+[node name="Staff" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_2gggi")
 
 [connection signal="velocity_computed" from="Navigation/NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Navigation/Timer" to="." method="_on_timer_timeout"]
