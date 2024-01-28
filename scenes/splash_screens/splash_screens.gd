@@ -13,7 +13,7 @@ var current_tween: Tween
 func _ready():
 	next()
 
-func _unhandled_key_input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
 		next()
 	if event.is_action_pressed("ui_cancel"):
