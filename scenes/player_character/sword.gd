@@ -9,7 +9,7 @@ func _on_area_2d_body_entered(body):
 		return
 	# print_debug("_on_area_2d_body_entered: ", body)
 	if body.has_method("hit"):
-		body.hit(10)
+		body.hit(10, body.global_position - global_position)
 
 
 
