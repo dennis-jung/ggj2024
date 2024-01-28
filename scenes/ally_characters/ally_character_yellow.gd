@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal has_been_hit
+
 @export var player: PlayerCharacter
 @export var speed: float = 60
 @export var accelleration: float = 7
@@ -10,8 +12,6 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @onready var speechbubble_scene = preload("res://scenes/speech_bubble/textbox.tscn")
-
-var speech_bubble: TextBox = null
 
 
 const lines: Array[String] = [
@@ -48,7 +48,7 @@ func _on_speech_timer_timeout():
 	self.add_child(textbox)
 	textbox.global_position = global_position
 	textbox.display_text(lines[0])
-	speech_bubble = textbox
+	has_been_hit.connect(textbox._on_shutup_timer_timeout)
 	# reset timer
 	speech_timer.start(speech_delay)
 
@@ -75,4 +75,4 @@ func select_animation():
 
 
 func hit(damage):
-	speech_bubble._on_shutup_timer_timeout()
+	has_been_hit.emit()
