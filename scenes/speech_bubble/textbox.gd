@@ -11,7 +11,7 @@ const MAX_WIDTH = 256 # Pixels
 var text := ""
 
 func display_text(text_to_display: String):
-	print("Displaying text")
+	#print("Displaying text")
 	text = text_to_display
 	label.text = text_to_display
 	

@@ -28,8 +28,6 @@ func _on_area_2d_body_entered(body):
 			print("Open!")
 			_animated_sprite.play("open")
 			is_game_over = true
-			
-			game_ended.emit()
 		else:
 			var textbox = speechbubble_scene.instantiate()
 			self.add_child(textbox)
@@ -41,3 +39,8 @@ func _on_area_2d_body_exited(body):
 	if body.get_name() == "PlayerCharacter":
 		print("Open!")
 		is_game_over = false
+
+
+func _on_animated_sprite_2d_animation_finished():
+	game_ended.emit()
+
