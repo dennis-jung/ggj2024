@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal has_been_hit
+
 @export var player: PlayerCharacter
 @export var speed: float = 60
 @export var accelleration: float = 7
@@ -52,6 +54,7 @@ func _on_speech_timer_timeout():
 	#randomize()
 	var random_line = lines[randi_range(0,lines.size()-1)]
 	textbox.display_text(random_line)
+	has_been_hit.connect(textbox._on_shutup_timer_timeout)
 	# reset timer
 	speech_timer.start(speech_delay)
 
@@ -75,3 +78,7 @@ func select_animation():
 		elif velocity.y > 0:
 			dir = "down"
 		sprite.play("walk_" + dir)
+
+
+func hit(damage):
+	has_been_hit.emit()
