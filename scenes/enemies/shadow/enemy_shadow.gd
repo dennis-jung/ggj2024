@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var shoot_timer: Timer = $ShootTimer
+@onready var spawn_position: Vector2 = global_position
 
 var bullet_prefab = preload("res://scenes/enemies/shadow/bullet/shadow_bullet.tscn")
 
@@ -84,7 +85,7 @@ func _on_navigation_timer_timeout():
 	if player:
 		nav_agent.target_position = player.global_position
 	else:
-		nav_agent.target_position = Vector2.ZERO
+		nav_agent.target_position = spawn_position
 
 
 func _on_shoot_timer_timeout():
