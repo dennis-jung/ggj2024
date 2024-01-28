@@ -15,9 +15,10 @@ signal has_been_hit
 
 
 const lines: Array[String] = [
-	"Let's get them, like the king got the crabs!",
-	"This guy looks like his parents were 1st cousins, just like with the king's line.",
-	"Third insult here!"
+	"Let's get them, like our king got the crabs!",
+	"This guy looks like his parents were 1st cousins, just like with the king's parents.",
+	"If these guys were any uglier, they could become royalty.",
+	"You are even dumber than the royal line."
 ]
 
 func _ready():
@@ -47,7 +48,8 @@ func _on_speech_timer_timeout():
 	var textbox = speechbubble_scene.instantiate()
 	self.add_child(textbox)
 	textbox.global_position = global_position
-	textbox.display_text(lines[0])
+	var random_line = lines[randi_range(0,lines.size()-1)]
+	textbox.display_text(random_line)
 	has_been_hit.connect(textbox._on_shutup_timer_timeout)
 	# reset timer
 	speech_timer.start(speech_delay)
