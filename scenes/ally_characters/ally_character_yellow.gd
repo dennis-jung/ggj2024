@@ -13,6 +13,7 @@ signal has_been_hit
 
 @onready var speechbubble_scene = preload("res://scenes/speech_bubble/textbox.tscn")
 
+var is_pushed_back: bool = false
 
 const lines: Array[String] = [
 	"What do you call a royal cow? - Sir Loin.",
@@ -26,6 +27,10 @@ func _ready():
 
 
 func _physics_process(delta):
+	if is_pushed_back:
+		move_and_slide()
+		return
+	
 	if nav_agent.is_navigation_finished():
 		return
 		
@@ -75,5 +80,17 @@ func select_animation():
 		sprite.play("walk_" + dir)
 
 
-func hit(damage):
+func hit(damage, hit_vector):
+	is_pushed_back = true
+	hit_flash()
 	has_been_hit.emit()
+	velocity = hit_vector.normalized() * 100
+	await get_tree().create_timer(0.25).timeout
+	is_pushed_back = false
+
+
+func hit_flash():
+	var current_tween = get_tree().create_tween()
+	current_tween.tween_property($AnimatedSprite2D, "modulate", Color(10, 10, 10), 0.1)
+	current_tween.tween_interval(0.2)
+	current_tween.tween_property($AnimatedSprite2D, "modulate", Color(1, 1, 1), 0.1)

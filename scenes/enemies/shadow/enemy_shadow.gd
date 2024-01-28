@@ -13,9 +13,10 @@ var bullet_prefab = preload("res://scenes/enemies/shadow/bullet/shadow_bullet.ts
 
 var player: CharacterBody2D
 
-var max_health := 100.0
+var max_health := 50.0
 var current_health := max_health
 
+var is_pushed_back: bool = false
 
 func _ready():
 	shoot_timer.wait_time = bullet_delay
@@ -23,6 +24,10 @@ func _ready():
 
 
 func _physics_process(delta):
+	if is_pushed_back:
+		move_and_slide()
+		return
+	
 	if nav_agent.is_navigation_finished():
 		return
 		
@@ -57,11 +62,15 @@ func shoot():
 	bullet.velocity = dir * bullet_speed
 
 
-func hit(damage):
-	print_debug("Hit for damage: ", damage)	
+func hit(damage, hit_vector):
+	is_pushed_back = true
+	#print_debug("Hit for damage: ", damage)	
 	current_health -= damage
 	hit_flash()
-	print_debug("Health: ", current_health)
+	velocity = hit_vector.normalized() * 100
+	#print_debug("Health: ", current_health)
+	await get_tree().create_timer(0.25).timeout
+	is_pushed_back = false
 
 
 func hit_flash():
@@ -78,6 +87,9 @@ func on_tween_finished():
 
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
+	if is_pushed_back:
+		return
+	
 	velocity = safe_velocity
 	move_and_slide()
 
