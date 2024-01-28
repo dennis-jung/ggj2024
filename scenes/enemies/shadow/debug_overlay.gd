@@ -6,9 +6,9 @@ var player: CharacterBody2D
 func _ready():
 	pass # Replace with function body.
 
-func _process(delta):
-	if player:
-		DebugDraw2D.line(global_position, player.global_position)
+#func _process(delta):
+#	if player:
+#		DebugDraw2D.line(global_position, player.global_position)
 	
 func _on_hunting_area_body_entered(body):
 	if body.name == "PlayerCharacter":

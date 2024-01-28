@@ -71,7 +71,7 @@ func hit(damage, hit_vector):
 	current_health -= damage
 	if current_health > 0:
 		hit_flash(0.2)
-		audio_player.stream = audio_ouch
+		# audio_player.stream = audio_ouch
 	else:
 		die_flash()
 		audio_player.stream = audio_dies

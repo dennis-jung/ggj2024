@@ -79,7 +79,6 @@ libraries = {
 autoplay = "idle"
 
 [node name="Debug" type="Node2D" parent="."]
-visible = false
 script = ExtResource("2_a10dt")
 
 [node name="SteeringBehavior" parent="." node_paths=PackedStringArray("character_body") instance=ExtResource("4_4r75w")]
