@@ -6,6 +6,8 @@ extends Node2D
 
 @export var _enemy_container: Node2D
 
+signal game_ended
+
 const feedback := "Noone is laughing yet. You need to get rid of all Buzzkills!"
 
 var is_game_over := false
@@ -26,6 +28,8 @@ func _on_area_2d_body_entered(body):
 			print("Open!")
 			_animated_sprite.play("open")
 			is_game_over = true
+			
+			game_ended.emit()
 		else:
 			var textbox = speechbubble_scene.instantiate()
 			self.add_child(textbox)

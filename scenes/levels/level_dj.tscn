@@ -35,7 +35,16 @@ _enemy_container = NodePath("../Enemies")
 
 [node name="Enemies" type="Node2D" parent="."]
 
+[node name="EnemyShadow3" parent="Enemies" instance=ExtResource("4_v6xui")]
+position = Vector2(378, -40)
+
 [node name="EnemyShadow" parent="Enemies" instance=ExtResource("4_v6xui")]
 
 [node name="EnemyShadow2" parent="Enemies" instance=ExtResource("4_v6xui")]
 position = Vector2(91, -87)
+
+[node name="EnemyShadow4" parent="Enemies" instance=ExtResource("4_v6xui")]
+position = Vector2(516, 310)
+
+[node name="EnemyShadow5" parent="Enemies" instance=ExtResource("4_v6xui")]
+position = Vector2(481, 375)
