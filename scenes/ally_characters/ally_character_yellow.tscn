@@ -144,6 +144,7 @@ position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_nc1de")
 
 [node name="AllySteeringBehavior" parent="." node_paths=PackedStringArray("character_body") instance=ExtResource("3_586wt")]
+visible = false
 character_body = NodePath("..")
 
 [node name="Navigation" type="Node2D" parent="."]

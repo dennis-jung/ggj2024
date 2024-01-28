@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var player: PlayerCharacter
-@export var speed: float = 300
+@export var speed: float = 60
 @export var accelleration: float = 7
 @export var speech_delay: float = 10.0
 
@@ -20,6 +20,8 @@ const lines: Array[String] = [
 
 func _ready():
 	speech_timer.start(speech_delay)
+	nav_agent.max_speed = speed
+
 
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished():

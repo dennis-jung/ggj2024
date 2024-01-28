@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 100
+@export var speed = 25
 @export var accelleration = 7
 @export var bullet_speed = 10
 @export var bullet_delay = 1
@@ -19,6 +19,7 @@ var current_health := max_health
 
 func _ready():
 	shoot_timer.wait_time = bullet_delay
+	nav_agent.max_speed = speed
 
 
 func _physics_process(delta):

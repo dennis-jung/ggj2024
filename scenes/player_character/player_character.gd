@@ -70,4 +70,17 @@ func _physics_process(_delta):
 
 
 func hit(damage):
+	hit_flash()
+
+
+func hit_flash():
+	var current_tween = get_tree().create_tween()
+	current_tween.connect("finished", on_tween_finished)
+	current_tween.tween_property($Sprite2D, "modulate", Color(10, 10, 10), 0.1)
+	current_tween.tween_interval(0.1)
+	current_tween.tween_property($Sprite2D, "modulate", Color(1, 1, 1), 0.1)
+
+
+func on_tween_finished():
 	pass
+
