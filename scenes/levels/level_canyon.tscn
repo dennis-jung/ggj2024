@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://0ohsl3t4y2tv"]
 
-[ext_resource type="TileSet" uid="uid://ctayc0c3etse7" path="res://scenes/levels/tilemap.tres" id="1_6b3h0"]
+[ext_resource type="TileSet" uid="uid://bstfoba6kpyep" path="res://scenes/levels/tilemap.tres" id="1_6b3h0"]
 [ext_resource type="PackedScene" uid="uid://44aaw8y86v8m" path="res://scenes/player_character/player_character.tscn" id="2_t2f22"]
 [ext_resource type="PackedScene" uid="uid://bfapesjiupn4" path="res://scenes/enemies/shadow/enemy_shadow.tscn" id="3_b4op4"]
 [ext_resource type="PackedScene" uid="uid://c32whibdlvdn8" path="res://scenes/ally_characters/ally_character_red.tscn" id="4_p3ijv"]
