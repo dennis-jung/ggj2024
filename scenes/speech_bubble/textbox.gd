@@ -35,3 +35,4 @@ func _on_shutup_timer_timeout():
 	text = ""
 	label.text = ""
 	visible = false
+	queue_free()

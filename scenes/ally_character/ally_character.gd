@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var player: PlayerCharacter
 @export var speed: float = 300
 @export var accelleration: float = 7
-@export var speech_delay: float = 5.0
+@export var speech_delay: float = 10.0
 
 @onready var nav_agent: NavigationAgent2D = $Navigation/NavigationAgent2D
 @onready var speech_timer = $SpeechTimer
