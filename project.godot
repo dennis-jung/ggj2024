@@ -78,6 +78,9 @@ advance_dialog={
 2d_physics/layer_4="Projectile"
 2d_physics/layer_5="Weapon"
 2d_physics/layer_6="Allies"
+avoidance/layer_1="Player"
+avoidance/layer_2="Allies"
+avoidance/layer_3="Enemies"
 
 [rendering]
 

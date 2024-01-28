@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 @onready var nav_agent: NavigationAgent2D = $Navigation/NavigationAgent2D
 @onready var speech_timer = $SpeechTimer
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @onready var speechbubble_scene = preload("res://scenes/speech_bubble/textbox.tscn")
 
@@ -21,11 +22,17 @@ func _ready():
 	speech_timer.start(speech_delay)
 
 func _physics_process(delta):
+	if nav_agent.is_navigation_finished():
+		return
+		
 	var direction = Vector2.ZERO
 	direction = nav_agent.get_next_path_position() - global_position
 	direction = direction.normalized()
-	velocity = velocity.lerp(direction * speed, accelleration * delta)
-	move_and_slide()
+	var new_velocity = velocity.lerp(direction * speed, accelleration * delta)
+	if nav_agent.avoidance_enabled:
+		nav_agent.set_velocity(new_velocity)
+	else:
+		_on_navigation_agent_2d_velocity_computed(new_velocity)
 
 
 func _on_timer_timeout():
@@ -40,3 +47,23 @@ func _on_speech_timer_timeout():
 	# reset timer
 	speech_timer.start(speech_delay)
 
+
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity):
+	velocity = safe_velocity
+	select_animation()
+	move_and_slide()
+
+
+func select_animation():
+	if velocity.length() == 0:
+		sprite.stop()
+	else:
+		var dir = "up"
+		if velocity.x < 0:
+			dir = "left"
+		elif velocity.x > 0:
+			dir = "right"
+		elif velocity.y > 0:
+			dir = "down"
+		sprite.play("walk_" + dir)

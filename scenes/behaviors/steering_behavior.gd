@@ -24,27 +24,33 @@ func _ready():
 
 
 func _physics_process(delta):
-	var space_state = get_world_2d().direct_space_state
-	create_collision_map(space_state)
+	create_collision_map()
 	create_danger_map()
+	create_interest_map()
+	combine_maps()
 
 
-func create_collision_map(space_state):
-	collision_map = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+func create_collision_map():
+	var coll_map: Array[float] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+	var space_state = get_world_2d().direct_space_state
 	# use global coordinates, not local to node!
+	var test = character_body.collision_mask
 	for i in direction_map.size():
 		var query = PhysicsRayQueryParameters2D.create(
-			character_body.position, character_body.position + direction_map[i] * 10, 
+			character_body.global_position, character_body.global_position + direction_map[i] * 10, 
 			character_body.collision_mask, 
 			[character_body])
 		var result = space_state.intersect_ray(query)
 		if result:
 			# print_debug("Hit result: dir={0} rid={1}".format([dir, result.rid]))
 			# set hit direction to full value
-			collision_map[i] = full_collision_value
-			collision_map[get_neighbor_dir_plus(i)] = neighbor_collision_value
-			collision_map[get_neighbor_dir_minus(i)] = neighbor_collision_value
+			coll_map[i] = full_collision_value
+			coll_map[get_neighbor_dir_plus(i)] = neighbor_collision_value
+			coll_map[get_neighbor_dir_minus(i)] = neighbor_collision_value
 			# print_debug("Collision map: ", collision_map)
+			
+	collision_map = coll_map
 
 
 func create_danger_map():
@@ -52,8 +58,9 @@ func create_danger_map():
 
 
 func create_interest_map():
-	interest_map = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-	
+	var intr_map: Array[float] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+	interest_map = intr_map
+
 
 func get_neighbor_dir_plus(index: int):
 	var neighbor_dir = index + 1
@@ -70,9 +77,14 @@ func get_neighbor_dir_minus(index: int):
 
 
 func combine_maps():
+	var str_map: Array[Vector2]
+	str_map.resize(8)
 	for i in direction_map.size():
-		danger_map[i] = collision_map[i]
-		
+		var avoid = danger_map[i] + collision_map[i]
+		var goto = interest_map[i]
+		var factor = clampf(goto - avoid, -10.0, 10.0)
+		str_map[i] = direction_map[i] * (factor)
+	steering_map = str_map
 
 func get_steering_map():
 	return steering_map

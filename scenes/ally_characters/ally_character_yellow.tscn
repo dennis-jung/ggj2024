@@ -1,0 +1,165 @@
+[gd_scene load_steps=18 format=3 uid="uid://drhpg5fow3rf1"]
+
+[ext_resource type="Script" path="res://scenes/ally_characters/ally_character_yellow.gd" id="1_swtf7"]
+[ext_resource type="Texture2D" uid="uid://cjodnhffviot2" path="res://assets/Jester_yellow.png" id="2_dydw2"]
+[ext_resource type="PackedScene" uid="uid://bqnxx0yem4uhs" path="res://scenes/behaviors/ally_steering_behavior.tscn" id="3_586wt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qkkv"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pedq"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0mn2"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr6k7"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg8tq"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xs0g8"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cahat"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_su82b"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyfyq"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(112, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpxeh"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ror25"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpx5n"]
+atlas = ExtResource("2_dydw2")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nqeme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qkkv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pedq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0mn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pedq")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr6k7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg8tq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xs0g8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg8tq")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cahat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su82b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyfyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su82b")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpxeh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ror25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpx5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ror25")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nc1de"]
+size = Vector2(9, 4)
+
+[node name="AllyCharacterYellow" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 7
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_swtf7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_nqeme")
+animation = &"walk_up"
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_nc1de")
+
+[node name="AllySteeringBehavior" parent="." node_paths=PackedStringArray("character_body") instance=ExtResource("3_586wt")]
+character_body = NodePath("..")
+
+[node name="Navigation" type="Node2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
+avoidance_enabled = true
+radius = 30.0
+avoidance_layers = 2
+avoidance_mask = 7
+
+[node name="Timer" type="Timer" parent="Navigation"]
+wait_time = 0.1
+autostart = true
+
+[node name="SpeechTimer" type="Timer" parent="."]
+
+[connection signal="velocity_computed" from="Navigation/NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="Navigation/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SpeechTimer" to="." method="_on_speech_timer_timeout"]
