@@ -69,9 +69,6 @@ bullet_delay = 2
 [node name="AllyCharacterGreen" parent="Allies" node_paths=PackedStringArray("player") instance=ExtResource("5_cbdm6")]
 position = Vector2(86, 39)
 player = NodePath("../../PlayerCharacter")
-speed = 60.0
-accelleration = 7.0
-speech_delay = 7.0
 
 [node name="AllyCharacterYellow" parent="Allies" node_paths=PackedStringArray("player") instance=ExtResource("6_2nird")]
 position = Vector2(87, 97)
