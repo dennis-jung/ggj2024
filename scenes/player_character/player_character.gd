@@ -7,6 +7,7 @@ signal shut_up
 @onready var anim_walk: AnimationPlayer = $AnimationPlayerWalk
 @onready var anim_sword: AnimationPlayer = $AnimationPlayerSword
 @onready var sword: Sprite2D = $Sword
+@onready var swoosh_audio = $AudioStreamPlayerSword
 
 var weapon_mount_points = {}
 var current_weapon: Sprite2D = null
