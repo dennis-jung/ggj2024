@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3ykij6cdehvo"]
+[gd_scene load_steps=10 format=3 uid="uid://b3ykij6cdehvo"]
 
+[ext_resource type="Script" path="res://scenes/levels/level_dj.gd" id="1_awdyk"]
 [ext_resource type="TileSet" uid="uid://bstfoba6kpyep" path="res://scenes/levels/tilemap.tres" id="1_nlre3"]
 [ext_resource type="PackedScene" uid="uid://44aaw8y86v8m" path="res://scenes/player_character/player_character.tscn" id="2_tvlnm"]
 [ext_resource type="PackedScene" uid="uid://dp3a6xdensjde" path="res://scenes/castle/castle.tscn" id="3_i7avc"]
@@ -15,6 +16,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-233, -179, 190, -179, 
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="LevelDj" type="Node2D"]
+script = ExtResource("1_awdyk")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-2, -37)
@@ -75,3 +77,5 @@ player = NodePath("../../PlayerCharacter")
 [node name="AllyCharacterRed" parent="Allies" node_paths=PackedStringArray("player") instance=ExtResource("7_08ifh")]
 position = Vector2(154, 37)
 player = NodePath("../../PlayerCharacter")
+
+[connection signal="game_ended" from="Castle" to="." method="_on_castle_game_ended"]

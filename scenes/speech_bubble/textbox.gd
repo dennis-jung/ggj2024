@@ -1,4 +1,5 @@
 extends MarginContainer
+class_name TextBox
 
 @onready var label = $MarginContainer/Label
 @onready var timer = $ShutupTimer

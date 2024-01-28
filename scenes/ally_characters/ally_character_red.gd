@@ -11,6 +11,8 @@ extends CharacterBody2D
 
 @onready var speechbubble_scene = preload("res://scenes/speech_bubble/textbox.tscn")
 
+var speech_bubble: TextBox = null
+
 
 const lines: Array[String] = [
 	"Let's get them, like the king got the crabs!",
@@ -46,9 +48,9 @@ func _on_speech_timer_timeout():
 	self.add_child(textbox)
 	textbox.global_position = global_position
 	textbox.display_text(lines[0])
+	speech_bubble = textbox
 	# reset timer
 	speech_timer.start(speech_delay)
-
 
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
@@ -69,3 +71,9 @@ func select_animation():
 		elif velocity.y > 0:
 			dir = "down"
 		sprite.play("walk_" + dir)
+
+
+func hit(damage):
+	speech_bubble._on_shutup_timer_timeout()
+
+
