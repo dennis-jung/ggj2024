@@ -7,9 +7,12 @@ extends CharacterBody2D
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var shoot_timer: Timer = $ShootTimer
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var spawn_position: Vector2 = global_position
 
 var bullet_prefab = preload("res://scenes/enemies/shadow/bullet/shadow_bullet.tscn")
+var audio_ouch = preload("res://scenes/enemies/shadow/ShadowOuch.wav")
+var audio_dies = preload("res://scenes/enemies/shadow/SchadowDies.wav")
 
 var player: CharacterBody2D
 
@@ -66,30 +69,47 @@ func hit(damage, hit_vector):
 	is_pushed_back = true
 	#print_debug("Hit for damage: ", damage)	
 	current_health -= damage
-	hit_flash()
+	if current_health > 0:
+		hit_flash(0.2)
+		audio_player.stream = audio_ouch
+	else:
+		die_flash()
+		audio_player.stream = audio_dies
+	audio_player.play()
 	velocity = hit_vector.normalized() * 100
 	#print_debug("Health: ", current_health)
 	await get_tree().create_timer(0.25).timeout
 	is_pushed_back = false
 
 
-func hit_flash():
+func hit_flash(duration):
 	var current_tween = get_tree().create_tween()
-	current_tween.connect("finished", on_tween_finished)
 	current_tween.tween_property($Sprite2D, "modulate", Color(10, 10, 10), 0.1)
-	current_tween.tween_interval(0.2)
+	current_tween.tween_interval(duration)
 	current_tween.tween_property($Sprite2D, "modulate", Color(1, 1, 1), 0.1)
+	
+
+func die_flash():
+	var current_tween = get_tree().create_tween()
+	current_tween.connect("finished", on_die_flash_finished)
+	current_tween.tween_property($Sprite2D, "modulate", Color(10, 10, 10), 0.1)
+	current_tween.tween_interval(0.1)
+	current_tween.tween_property($Sprite2D, "modulate", Color(1, 1, 1), 0.1)
+	current_tween.tween_interval(0.1)
+	current_tween.tween_property($Sprite2D, "modulate", Color(10, 10, 10), 0.1)
+	current_tween.tween_interval(0.1)
+	current_tween.tween_property($Sprite2D, "modulate", Color(1, 1, 1), 0.1)
+	current_tween.tween_property($Sprite2D, "modulate:a", 0, 0.3)
 
 
-func on_tween_finished():
-	if current_health <= 0:
-		queue_free()
+func on_die_flash_finished():
+	print_debug("free")
+	queue_free()
 
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	if is_pushed_back:
 		return
-	
 	velocity = safe_velocity
 	move_and_slide()
 
@@ -103,3 +123,5 @@ func _on_navigation_timer_timeout():
 
 func _on_shoot_timer_timeout():
 	shoot()
+
+

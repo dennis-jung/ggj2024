@@ -10,6 +10,7 @@ signal has_been_hit
 @onready var nav_agent: NavigationAgent2D = $Navigation/NavigationAgent2D
 @onready var speech_timer = $SpeechTimer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 
 @onready var speechbubble_scene = preload("res://scenes/speech_bubble/textbox.tscn")
 
@@ -83,6 +84,7 @@ func select_animation():
 func hit(damage, hit_vector):
 	is_pushed_back = true
 	hit_flash()
+	audio_player.play()
 	has_been_hit.emit()
 	velocity = hit_vector.normalized() * 100
 	await get_tree().create_timer(0.25).timeout

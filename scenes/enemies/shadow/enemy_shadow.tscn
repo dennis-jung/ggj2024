@@ -97,6 +97,8 @@ autostart = true
 
 [node name="ShootTimer" type="Timer" parent="."]
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="body_entered" from="HuntingArea" to="." method="_on_hunting_area_body_entered"]
 [connection signal="body_entered" from="HuntingArea" to="Debug" method="_on_hunting_area_body_entered"]
 [connection signal="body_exited" from="HuntingArea" to="." method="_on_hunting_area_body_exited"]
@@ -104,3 +106,4 @@ autostart = true
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

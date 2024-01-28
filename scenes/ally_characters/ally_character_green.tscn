@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://be1peyuy6qncr"]
+[gd_scene load_steps=19 format=3 uid="uid://be1peyuy6qncr"]
 
 [ext_resource type="Script" path="res://scenes/ally_characters/ally_character_green.gd" id="1_0buqa"]
 [ext_resource type="Texture2D" uid="uid://digra46lrfi4r" path="res://assets/Jester_green.png" id="2_sm3gc"]
 [ext_resource type="PackedScene" uid="uid://bqnxx0yem4uhs" path="res://scenes/behaviors/ally_steering_behavior.tscn" id="3_4214j"]
+[ext_resource type="AudioStream" uid="uid://dthfl7nuicxpq" path="res://scenes/ally_characters/allies_ouch.wav" id="4_lgjuw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmw02"]
 atlas = ExtResource("2_sm3gc")
@@ -160,6 +161,9 @@ wait_time = 0.1
 autostart = true
 
 [node name="SpeechTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lgjuw")
 
 [connection signal="velocity_computed" from="Navigation/NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Navigation/Timer" to="." method="_on_timer_timeout"]
