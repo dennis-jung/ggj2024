@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name PlayerCharacter
 
+signal shut_up
+
 @export var speed: int = 100
 @onready var anim_walk: AnimationPlayer = $AnimationPlayerWalk
 @onready var anim_sword: AnimationPlayer = $AnimationPlayerSword
@@ -26,6 +28,8 @@ func _ready():
 func _unhandled_input(event):
 	if event.is_action_pressed("player_attack"):
 		anim_sword.play("attack_" + current_direction)
+	if event.is_action_pressed("player_shout"):
+		shut_up.emit()
 
 
 func get_input():
