@@ -1,7 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://dp3a6xdensjde"]
+[gd_scene load_steps=13 format=3 uid="uid://dp3a6xdensjde"]
 
 [ext_resource type="Script" path="res://scenes/castle/castle.gd" id="1_kv8a1"]
 [ext_resource type="Texture2D" uid="uid://cclywsyfaeem" path="res://scenes/castle/Castle.png" id="2_4uvsi"]
+
+[sub_resource type="Gradient" id="Gradient_r8j5q"]
+offsets = PackedFloat32Array(0.337662, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.917647, 0.235294, 0.290196, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hoftr"]
+gradient = SubResource("Gradient_r8j5q")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omq3c"]
 size = Vector2(48, 40)
@@ -59,6 +66,12 @@ animations = [{
 [node name="Castle" type="Node2D"]
 script = ExtResource("1_kv8a1")
 
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(0.052307, 7.15754)
+rotation = -1.5708
+scale = Vector2(0.0779495, 31.2603)
+texture = SubResource("GradientTexture1D_hoftr")
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -68,8 +81,6 @@ shape = SubResource("RectangleShape2D_omq3c")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rg6xx")
 animation = &"open"
-frame = 4
-frame_progress = 0.517687
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

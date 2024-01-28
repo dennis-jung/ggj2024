@@ -1,14 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://3khngexseeg8"]
+[gd_scene load_steps=4 format=3 uid="uid://3khngexseeg8"]
 
 [ext_resource type="Script" path="res://scenes/speech_bubble/textbox.gd" id="1_0hpd7"]
 [ext_resource type="Texture2D" uid="uid://cqo2l5pttnuac" path="res://scenes/speech_bubble/Speech_bubble.png" id="2_24fld"]
+[ext_resource type="FontFile" uid="uid://cxkhuftndonpf" path="res://assets/press-start-2p-font/PressStart2P-vaV7.ttf" id="3_fscut"]
 
 [node name="SpeechBubble" type="MarginContainer"]
 anchors_preset = -1
-anchor_right = 0.118
-anchor_bottom = 0.072
-offset_right = -71.56
-offset_bottom = -0.760005
+anchor_right = 0.081
+anchor_bottom = 0.071
+offset_right = -0.52
+offset_bottom = 0.31999
 script = ExtResource("1_0hpd7")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -30,8 +31,9 @@ theme_override_constants/margin_bottom = 8
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_fscut")
 theme_override_font_sizes/font_size = 8
-vertical_alignment = 1
+horizontal_alignment = 1
 
 [node name="ShutupTimer" type="Timer" parent="."]
 one_shot = true
