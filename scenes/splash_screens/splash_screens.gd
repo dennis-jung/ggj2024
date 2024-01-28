@@ -13,12 +13,19 @@ var current_tween: Tween
 func _ready():
 	next()
 
+func _unhandled_key_input(event):
+	if event.is_action_pressed("ui_accept"):
+		next()
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().change_scene_to_file("res://scenes/levels/level_dj.tscn")
+		
 
 func next():
 	index += 1
 	print_debug("splash screen index: ", index)
 	if index >= images.size():
 		print_debug("exiting splash screens")
+		get_tree().change_scene_to_file("res://scenes/levels/level_dj.tscn")
 		return
 	fader.color.a = 1.0
 	current_image = images[index]

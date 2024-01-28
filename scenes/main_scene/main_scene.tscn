@@ -1,27 +1,49 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0khnkkcb5q1k"]
+[gd_scene load_steps=7 format=3 uid="uid://c0khnkkcb5q1k"]
 
 [ext_resource type="Script" path="res://scenes/main_scene/main_scene.gd" id="1_husv0"]
 [ext_resource type="PackedScene" uid="uid://dgif6lu2hldo4" path="res://scenes/splash_screens/splash_screens.tscn" id="2_svxkw"]
 [ext_resource type="Texture2D" uid="uid://dxre2u7sbt25b" path="res://assets/ggj/GGJ_2024_logo.png" id="4_s36n2"]
+[ext_resource type="Texture2D" uid="uid://bkjj6fn4x0cdw" path="res://assets/title_screen.png" id="5_kfwgv"]
+[ext_resource type="Texture2D" uid="uid://8hmgkwl7a6wf" path="res://assets/icon-dark.png" id="5_toan6"]
 [ext_resource type="Texture2D" uid="uid://do34cr1sw3l56" path="res://assets/ggj/GGJ_2024_theme.jpg" id="5_uknar"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_husv0")
 
 [node name="SplashScreens" parent="." node_paths=PackedStringArray("images") instance=ExtResource("2_svxkw")]
-images = [NodePath("GGL2024_logo2"), NodePath("GGL2024_theme2")]
+display_time = 1.0
+fade_time = 0.5
+in_between_time = 0.5
+images = [NodePath("GGL2024_logo"), NodePath("GGL2024_theme"), NodePath("Godot_logo"), NodePath("TitleScreen")]
 
-[node name="GGL2024_logo2" type="TextureRect" parent="SplashScreens"]
+[node name="GGL2024_logo" type="TextureRect" parent="SplashScreens"]
 visible = false
 offset_right = 1920.0
 offset_bottom = 1084.0
 texture = ExtResource("4_s36n2")
 expand_mode = 5
 
-[node name="GGL2024_theme2" type="TextureRect" parent="SplashScreens"]
+[node name="GGL2024_theme" type="TextureRect" parent="SplashScreens"]
 visible = false
 offset_top = -57.0
 offset_right = 1937.0
 offset_bottom = 1231.0
 texture = ExtResource("5_uknar")
 expand_mode = 5
+
+[node name="Godot_logo" type="TextureRect" parent="SplashScreens"]
+visible = false
+offset_top = 1.0
+offset_right = 1918.0
+offset_bottom = 1087.0
+texture = ExtResource("5_toan6")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="TitleScreen" type="TextureRect" parent="SplashScreens"]
+visible = false
+offset_top = 4.0
+offset_right = 1917.0
+offset_bottom = 1079.0
+texture = ExtResource("5_kfwgv")
+expand_mode = 2
