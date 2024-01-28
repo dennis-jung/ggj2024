@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var player: PlayerCharacter
 @export var speed: float = 60
 @export var accelleration: float = 7
-@export var speech_delay: float = 10.0
+@export var speech_delay: float = 7.0
 
 @onready var nav_agent: NavigationAgent2D = $Navigation/NavigationAgent2D
 @onready var speech_timer = $SpeechTimer
@@ -13,9 +13,13 @@ extends CharacterBody2D
 
 
 const lines: Array[String] = [
-	"Let's get them, like the king got the crabs!",
-	"This guy looks like his parents were 1st cousins, just like with the king's line.",
-	"Third insult here!"
+	"<Pun missing>",
+	"!Punchline",
+	"main.c crashed",
+	"A <NullPointerException> comes into a bar",
+	"HeapOverflow detected",
+	"{Placeholder}",
+	"Uh-oh"
 ]
 
 func _ready():
@@ -45,7 +49,9 @@ func _on_speech_timer_timeout():
 	var textbox = speechbubble_scene.instantiate()
 	self.add_child(textbox)
 	textbox.global_position = global_position
-	textbox.display_text(lines[0])
+	#randomize()
+	var random_line = lines[randi_range(0,lines.size()-1)]
+	textbox.display_text(random_line)
 	# reset timer
 	speech_timer.start(speech_delay)
 
