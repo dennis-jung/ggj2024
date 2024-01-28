@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://dp3a6xdensjde"]
+
+[ext_resource type="Script" path="res://scenes/castle/castle.gd" id="1_kv8a1"]
+[ext_resource type="Texture2D" uid="uid://cclywsyfaeem" path="res://scenes/castle/Castle.png" id="2_4uvsi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omq3c"]
+size = Vector2(48, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owbus"]
+atlas = ExtResource("2_4uvsi")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d8i3"]
+atlas = ExtResource("2_4uvsi")
+region = Rect2(64, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mdpl"]
+atlas = ExtResource("2_4uvsi")
+region = Rect2(128, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uyt3"]
+atlas = ExtResource("2_4uvsi")
+region = Rect2(192, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gp7c0"]
+atlas = ExtResource("2_4uvsi")
+region = Rect2(256, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10d62"]
+atlas = ExtResource("2_4uvsi")
+region = Rect2(320, 0, 64, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rg6xx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owbus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d8i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mdpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uyt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gp7c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10d62")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="Castle" type="Node2D"]
+script = ExtResource("1_kv8a1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_omq3c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rg6xx")
+animation = &"open"
+frame = 4
+frame_progress = 0.517687
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
