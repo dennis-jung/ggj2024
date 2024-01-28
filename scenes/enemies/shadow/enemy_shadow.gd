@@ -1,16 +1,27 @@
 extends CharacterBody2D
 
+@export var speed = 100
+@export var accelleration = 7
+
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+
 var player: CharacterBody2D
 
 var max_health := 100.0
 var current_health := max_health
 
-const SPEED = 100.0
-
-
 func _physics_process(delta):
-	move_and_slide()
-
+	if nav_agent.is_navigation_finished():
+		return
+		
+	var direction = Vector2.ZERO
+	direction = nav_agent.get_next_path_position() - global_position
+	direction = direction.normalized()
+	var new_velocity = velocity.lerp(direction * speed, accelleration * delta)
+	if nav_agent.avoidance_enabled:
+		nav_agent.set_velocity(new_velocity)
+	else:
+		_on_navigation_agent_2d_velocity_computed(new_velocity)
 
 func _on_hunting_area_body_entered(body):
 	if body.name == "PlayerCharacter":
@@ -40,3 +51,15 @@ func hit_flash():
 func on_tween_finished():
 	if current_health <= 0:
 		queue_free()
+
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity):
+	velocity = safe_velocity
+	move_and_slide()
+
+
+func _on_navigation_timer_timeout():
+	if player:
+		nav_agent.target_position = player.global_position
+	else:
+		nav_agent.target_position = Vector2.ZERO
