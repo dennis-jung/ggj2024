@@ -11,6 +11,7 @@ signal has_been_hit
 @onready var speech_timer = $SpeechTimer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var audio_plaer_bells: AudioStreamPlayer = $AudioStreamPlayerBells
 @onready var staff: AnimatedSprite2D = $Staff
 
 @onready var speechbubble_scene = preload("res://scenes/speech_bubble/textbox.tscn")
@@ -57,7 +58,8 @@ func _on_timer_timeout():
 	nav_agent.target_position = player.global_position
 
 func _on_speech_timer_timeout():
-		# give speech
+	audio_plaer_bells.play()
+	# give speech
 	var textbox = speechbubble_scene.instantiate()
 	self.add_child(textbox)
 	textbox.global_position = global_position

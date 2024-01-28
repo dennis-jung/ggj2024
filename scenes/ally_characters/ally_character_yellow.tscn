@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://drhpg5fow3rf1"]
+[gd_scene load_steps=25 format=3 uid="uid://drhpg5fow3rf1"]
 
 [ext_resource type="Script" path="res://scenes/ally_characters/ally_character_yellow.gd" id="1_swtf7"]
 [ext_resource type="Texture2D" uid="uid://cjodnhffviot2" path="res://assets/Jester_yellow.png" id="2_dydw2"]
 [ext_resource type="PackedScene" uid="uid://bqnxx0yem4uhs" path="res://scenes/behaviors/ally_steering_behavior.tscn" id="3_586wt"]
 [ext_resource type="AudioStream" uid="uid://dthfl7nuicxpq" path="res://scenes/ally_characters/allies_ouch.wav" id="4_s3rvm"]
 [ext_resource type="Texture2D" uid="uid://bawrp8dcwl7a0" path="res://assets/Jester_staff.png" id="5_hycwi"]
+[ext_resource type="AudioStream" uid="uid://l5rtsh411kh6" path="res://scenes/ally_characters/jingle-bells-107671.wav" id="6_l2nhg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2qkkv"]
 atlas = ExtResource("2_dydw2")
@@ -212,6 +213,9 @@ stream = ExtResource("4_s3rvm")
 [node name="Staff" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_pwllq")
+
+[node name="AudioStreamPlayerBells" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_l2nhg")
 
 [connection signal="velocity_computed" from="Navigation/NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Navigation/Timer" to="." method="_on_timer_timeout"]
