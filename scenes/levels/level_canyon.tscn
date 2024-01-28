@@ -33,6 +33,7 @@ position = Vector2(1, -113)
 
 [node name="EnemyShadow" parent="." instance=ExtResource("3_b4op4")]
 position = Vector2(1, -87)
+bullet_speed = 40
 metadata/_edit_lock_ = true
 
 [node name="AllyCharacterRed" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_p3ijv")]

@@ -2,13 +2,23 @@ extends CharacterBody2D
 
 @export var speed = 100
 @export var accelleration = 7
+@export var bullet_speed = 10
+@export var bullet_delay = 1
 
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var shoot_timer: Timer = $ShootTimer
+
+var bullet_prefab = preload("res://scenes/enemies/shadow/bullet/shadow_bullet.tscn")
 
 var player: CharacterBody2D
 
 var max_health := 100.0
 var current_health := max_health
+
+
+func _ready():
+	shoot_timer.wait_time = bullet_delay
+
 
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished():
@@ -26,11 +36,23 @@ func _physics_process(delta):
 func _on_hunting_area_body_entered(body):
 	if body.name == "PlayerCharacter":
 		player = body
-	
+	shoot()
+	shoot_timer.start()
 
 func _on_hunting_area_body_exited(body):
 	if body.name == "PlayerCharacter":
 		player = null
+	shoot_timer.stop()
+
+func shoot():
+	if !player:
+		return
+	var dir = player.global_position - global_position
+	dir = dir.normalized()
+	var bullet: ShadowBullet = bullet_prefab.instantiate()
+	get_tree().root.add_child(bullet)
+	bullet.global_position = global_position + dir
+	bullet.velocity = dir * bullet_speed
 
 
 func hit(damage):
@@ -63,3 +85,7 @@ func _on_navigation_timer_timeout():
 		nav_agent.target_position = player.global_position
 	else:
 		nav_agent.target_position = Vector2.ZERO
+
+
+func _on_shoot_timer_timeout():
+	shoot()

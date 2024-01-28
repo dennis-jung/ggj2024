@@ -63,3 +63,7 @@ func _physics_process(_delta):
 	get_input()
 	select_animation()
 	move_and_slide()
+
+
+func hit(damage):
+	pass
