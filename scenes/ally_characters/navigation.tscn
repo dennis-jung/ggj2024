@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwa6lkr07oq23"]
+
+[ext_resource type="Script" path="res://scenes/ally_characters/navigation.gd" id="1_wlfdu"]
+
+[node name="Navigation" type="Node2D"]
+script = ExtResource("1_wlfdu")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 30.0
+avoidance_layers = 2
+avoidance_mask = 7
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

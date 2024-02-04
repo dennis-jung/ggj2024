@@ -1,10 +1,8 @@
 extends MarginContainer
-class_name TextBox
+class_name SpeechBubble
 
 @onready var label = $MarginContainer/Label
 @onready var timer = $ShutupTimer
-
-var talk_time := 5.0
 
 const MAX_WIDTH = 256 # Pixels
 
@@ -25,11 +23,4 @@ func display_text(text_to_display: String):
 		custom_minimum_size.y = size.y
 		
 	#global_position.x -= size.x / 2
-	global_position.y -= size.y + 20
-	
-	timer.start(talk_time)
-
-func _on_shutup_timer_timeout():
-	text = ""
-	label.text = ""
-	queue_free()
+	position.y = -(size.y + 20)

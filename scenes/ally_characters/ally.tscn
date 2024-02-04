@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=3 uid="uid://bo68cj0yy6gsx"]
+
+[ext_resource type="Script" path="res://scenes/ally_characters/ally.gd" id="1_ycuaf"]
+[ext_resource type="PackedScene" uid="uid://cgltm5158yvxb" path="res://scenes/ally_characters/mount_points.tscn" id="2_vdgop"]
+[ext_resource type="AudioStream" uid="uid://dthfl7nuicxpq" path="res://scenes/ally_characters/allies_ouch.wav" id="3_ky5lr"]
+[ext_resource type="Texture2D" uid="uid://bawrp8dcwl7a0" path="res://assets/Jester_staff.png" id="3_ou3mc"]
+[ext_resource type="PackedScene" uid="uid://dt6fu7s25q8nh" path="res://scenes/ally_characters/joke_bubble.tscn" id="7_8s6gh"]
+[ext_resource type="PackedScene" uid="uid://dwa6lkr07oq23" path="res://scenes/ally_characters/navigation.tscn" id="7_urjpb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tv747"]
+size = Vector2(9, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u5px"]
+atlas = ExtResource("3_ou3mc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enf15"]
+atlas = ExtResource("3_ou3mc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjbaj"]
+atlas = ExtResource("3_ou3mc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r28fy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u5px")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enf15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjbaj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Ally" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 7
+script = ExtResource("1_ycuaf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_tv747")
+
+[node name="AudioStreamPlayerOuch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ky5lr")
+
+[node name="MountPoints" parent="." instance=ExtResource("2_vdgop")]
+
+[node name="Staff" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_r28fy")
+
+[node name="Navigation" parent="." node_paths=PackedStringArray("character") instance=ExtResource("7_urjpb")]
+character = NodePath("..")
+
+[node name="JokeBubble" parent="." instance=ExtResource("7_8s6gh")]
+z_index = 2
+
+[connection signal="navigation_velocity_computed" from="Navigation" to="." method="_on_navigation_navigation_velocity_computed"]

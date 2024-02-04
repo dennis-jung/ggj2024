@@ -14,7 +14,7 @@ signal has_been_hit
 @onready var audio_plaer_bells: AudioStreamPlayer = $AudioStreamPlayerBells
 @onready var staff: AnimatedSprite2D = $Staff
 
-@onready var speechbubble_scene = preload("res://scenes/speech_bubble/textbox.tscn")
+@onready var speechbubble_scene = preload("res://scenes/speech_bubble/speech_bubble.tscn")
 
 var staff_mount_points = {}
 

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt6fu7s25q8nh"]
+
+[ext_resource type="Script" path="res://scenes/ally_characters/joke_bubble.gd" id="1_uxfsx"]
+[ext_resource type="PackedScene" uid="uid://3khngexseeg8" path="res://scenes/speech_bubble/speech_bubble.tscn" id="2_viafd"]
+[ext_resource type="AudioStream" uid="uid://l5rtsh411kh6" path="res://scenes/ally_characters/jingle-bells-107671.wav" id="3_drsyc"]
+
+[node name="JokeBubble" type="Node2D"]
+script = ExtResource("1_uxfsx")
+
+[node name="SpeechBubble" parent="." instance=ExtResource("2_viafd")]
+visible = false
+offset_right = 27.0
+offset_bottom = 36.0
+
+[node name="AudioStreamPlayerBells" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_drsyc")
+
+[node name="JokeTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="JokeTimer" to="." method="_on_joke_timer_timeout"]

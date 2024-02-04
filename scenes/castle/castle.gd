@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var _animated_sprite = $AnimatedSprite2D
 
-@onready var speechbubble_scene = preload("res://scenes/speech_bubble/textbox.tscn")
+@onready var speechbubble_scene = preload("res://scenes/speech_bubble/speech_bubble.tscn")
 
 @export var _enemy_container: Node2D
 

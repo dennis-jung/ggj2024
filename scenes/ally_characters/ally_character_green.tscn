@@ -1,8 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://be1peyuy6qncr"]
+[gd_scene load_steps=24 format=3 uid="uid://be1peyuy6qncr"]
 
 [ext_resource type="Script" path="res://scenes/ally_characters/ally_character_green.gd" id="1_0buqa"]
 [ext_resource type="Texture2D" uid="uid://digra46lrfi4r" path="res://assets/Jester_green.png" id="2_sm3gc"]
-[ext_resource type="PackedScene" uid="uid://bqnxx0yem4uhs" path="res://scenes/behaviors/ally_steering_behavior.tscn" id="3_4214j"]
 [ext_resource type="AudioStream" uid="uid://dthfl7nuicxpq" path="res://scenes/ally_characters/allies_ouch.wav" id="4_lgjuw"]
 [ext_resource type="Texture2D" uid="uid://bawrp8dcwl7a0" path="res://assets/Jester_staff.png" id="5_2inwx"]
 [ext_resource type="AudioStream" uid="uid://l5rtsh411kh6" path="res://scenes/ally_characters/jingle-bells-107671.wav" id="6_cipxu"]
@@ -189,10 +188,6 @@ position = Vector2(0, -8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_nc1de")
-
-[node name="AllySteeringBehavior" parent="." node_paths=PackedStringArray("character_body") instance=ExtResource("3_4214j")]
-visible = false
-character_body = NodePath("..")
 
 [node name="Navigation" type="Node2D" parent="."]
 
